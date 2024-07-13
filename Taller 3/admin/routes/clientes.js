@@ -1,17 +1,29 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
 
-const Sequelize = require('sequelize');
-const Cliente = require('../models').cliente;
+module.exports = (Cliente) => {
+    const router = express.Router();
 
-router.get('/clientes', function (req, res, next) {
-    Cliente.findAll({
-        attributes: { exclude: ["updatedAt"] }
-    })
-        .then(clientes => {
-            res.render('clientes', { title: 'Clientes', arrClientes: clientes });
-        })
-        .catch(error => res.status(400).send(error))
-});
+    router.get('/', async (req, res) => {
+        try {
+            const clientes = await Cliente.find({});
+            res.render('clientes', { clientes });
+        } catch (err) {
+            res.status(500).send(err);
+        }
+    });
 
-module.exports = router;
+    router.post('/', async (req, res) => {
+        try {
+            const nuevoCliente = new Cliente({
+                nombre: req.body.nombre,
+                apellido: req.body.apellido
+            });
+            await nuevoCliente.save();
+            res.redirect('/clientes');
+        } catch (err) {
+            res.status(500).send(err);
+        }
+    });
+
+    return router;
+};

@@ -11,6 +11,21 @@
 <body>
     <div class="container">
         <h1>Listado de pedidos</h1>
+        <form action="/productos" method="post">
+            <div class="form-group">
+                <label for="descrip">Descripción:</label>
+                <input type="text" class="form-control" id="Descripción" name="Descripción">
+            </div>
+            <div class="form-group">
+                <label for="stock">Stock:</label>
+                <input type="number" class="form-control" id="Stock" name="Stock">
+            </div>
+            <div class="form-group">
+                <label for="precio">Precio:</label>
+                <input type="number" step="0.01" class="form-control" id="Precio" name="Precio">
+            </div>
+            <button type="submit" class="btn btn-primary">Nuevo Pedido</button>
+        </form>
 
         <% if (pedidos.length===0) { %>
             <p>No hay pedidos registrados.</p>
@@ -20,7 +35,7 @@
                         <tr>
                             <th>Id</th>
                             <th>Fecha</th>
-                            <th>Cliente</th>
+                            <th>IdCliente</th>
                             <th>Estado</th>
                         </tr>
                     </thead>
@@ -31,13 +46,13 @@
                                     <%= pedido.Id %>
                                 </td>
                                 <td>
-                                    <%= pedido.fecha %>
+                                    <%= pedido.Fecha %>
                                 </td>
                                 <td>
-                                    <%= pedido.cliente %>
+                                    <%= pedido.IdCliente %>
                                 </td>
                                 <td>
-                                    <%= pedido.estado %>
+                                    <%= pedido.Estado %>
                                 </td>
                             </tr>
                             <% } %>

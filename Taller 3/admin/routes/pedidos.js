@@ -1,16 +1,21 @@
-var express = require('express');
-var router = express.Router();
-module.exports = router;
+const express = require('express');
+const router = express.Router();
+const { Pedido, Cliente } = require('../models');
 
-const Sequelize = require('sequelize');
-const Pedidos = require('../models').pedido;
-
-router.get('/pedidos', function (req, res, next) {
-    Cliente.findAll({
-        attributes: { exclude: ["updatedAt"] }
-    })
-        .then(pedidos => {
-            res.render('pedidos', { title: 'Pedidos', arrClientes: pedidos });
-        })
-        .catch(error => res.status(400).send(error))
+router.get('/', async (req, res) => {
+    const pedidos = await Pedido.findAll({
+        include: [{ model: Cliente, as: 'cliente' }]
+    });
+    res.render('pedidos', { pedidos });
 });
+
+router.post('/', async (req, res) => {
+    await Pedido.create({
+        fecha: req.body.fecha,
+        clienteId: req.body.clienteId,
+        estado: req.body.estado
+    });
+    res.redirect('/pedidos');
+});
+
+module.exports = router;

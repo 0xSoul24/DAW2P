@@ -1,16 +1,19 @@
-var express = require('express');
-var router = express.Router();
-module.exports = router;
+const express = require('express');
+const router = express.Router();
+const { Producto } = require('../models');
 
-const Sequelize = require('sequelize');
-const Productos = require('../models').producto;
-
-router.get('/productos', function (req, res, next) {
-    Cliente.findAll({
-        attributes: { exclude: ["updatedAt"] }
-    })
-        .then(productos => {
-            res.render('productos', { title: 'Productos', arrClientes: productos });
-        })
-        .catch(error => res.status(400).send(error))
+router.get('/', async (req, res) => {
+    const productos = await Producto.findAll();
+    res.render('productos', { productos });
 });
+
+router.post('/', async (req, res) => {
+    await Producto.create({
+        descrip: req.body.descrip,
+        stock: req.body.stock,
+        precio: req.body.precio
+    });
+    res.redirect('/productos');
+});
+
+module.exports = router;
