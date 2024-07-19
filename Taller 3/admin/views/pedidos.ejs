@@ -48,7 +48,7 @@
                             <%= pedido.id %>
                         </td>
                         <td>
-                            <%= pedido.Fecha %>
+                            <%= pedido.fecha %>
                         </td>
                         <td>
                             <%= pedido.Cliente.nombre %>
@@ -60,7 +60,7 @@
                         <td>
                             <% pedido.Productos.forEach(producto=> { %>
                                 <p>
-                                    <%= producto.descripción %>: <%= producto.ProdxPedido.cantidad %> x <%=
+                                    <%= producto.descrip %>: <%= producto.ProdxPedido.cantidad %> x <%=
                                                 producto.ProdxPedido.precio %>
                                 </p>
                                 <% }) %>
