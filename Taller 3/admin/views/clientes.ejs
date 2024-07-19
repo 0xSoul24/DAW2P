@@ -1,61 +1,59 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clientes</title>
-    <%- include('../partials/header') %>
-        <%- include('../partials/menu') %>
-
+    <link rel="stylesheet" href="/public/assets/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/datatables/datatables.min.css">
 </head>
 
 <body>
     <div class="container">
-        <h1>Listado de clientes</h1>
-        <form action="/clientes" method="post">
-            <div class="form-group">
-                <label for="Nombre">Nombre:</label>
-                <input type="text" class="form-control" id="Nombre" name="Nombre">
+        <h1>Clientes</h1>
+        <form action="/clientes/create" method="POST">
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" required>
             </div>
-            <div class="form-group">
-                <label for="apellido">Apellido:</label>
-                <input type="text" class="form-control" id="Apellido" name="Apellido">
+            <div class="mb-3">
+                <label for="apellido" class="form-label">Apellido</label>
+                <input type="text" class="form-control" id="apellido" name="apellido" required>
             </div>
-            <button type="submit" class="btn btn-primary">Nuevo Cliente</button>
+            <button type="submit" class="btn btn-primary">Crear Cliente</button>
         </form>
-
-        <% if (clientes.length===0) { %>
-            <p>No hay clientes registrados.</p>
-            <% } else { %>
-                <table class="table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% arrClientes.forEach((cliente)=> { %>
-                            <tr>
-                                <td>
-                                    <%= cliente.Id %>
-                                </td>
-                                <td>
-                                    <%= cliente.Nombre %>
-                                </td>
-                                <td>
-                                    <%= cliente.Apellido %>
-                                </td>
-                            </tr>
-                            <% } %>
-                    </tbody>
-                </table>
-                <% } %>
+        <hr>
+        <table id="clientesTable" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% clientes.forEach(cliente=> { %>
+                    <tr>
+                        <td>
+                            <%= cliente.id %>
+                        </td>
+                        <td>
+                            <%= cliente.nombre %>
+                        </td>
+                        <td>
+                            <%= cliente.apellido %>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
     </div>
-
-    <%- include('../layouts/footer.html') %>
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/datatables/datatables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#clientesTable').DataTable();
+        });
+    </script>
 </body>
 
 </html>

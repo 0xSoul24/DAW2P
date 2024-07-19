@@ -3,30 +3,38 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async up(queryInterface, Sequelize) {
-        await queryInterface.bulkInsert('Pedido', [
+        await queryInterface.bulkInsert('Pedidos', [
             {
-                Id: 1,
-                Fecha: new Date(),
-                IdCliente: 1,
-                Estado: 'En Espera',
+                id: 1,
+                fecha: new Date(),
+                idCliente: 1,
+                estado: 'En Espera',
+                createdAt: new Date(),
+                updatedAt: new Date(),
             },
             {
-                Id: 2,
-                Fecha: new Date(),
-                IdCliente: 2,
-                Estado: 'Tansportando',
+                id: 2,
+                fecha: new Date(),
+                idCliente: 2,
+                estado: 'Tansportando',
+                createdAt: new Date(),
+                updatedAt: new Date(),
             },
             {
-                Id: 3,
-                Fecha: new Date(),
-                IdCliente: 3,
-                Estado: 'Entregado',
+                id: 3,
+                fecha: new Date(),
+                idCliente: 3,
+                estado: 'Entregado',
+                createdAt: new Date(),
+                updatedAt: new Date(),
             },
             {
-                Id: 3,
-                Fecha: new Date(),
-                IdCliente: 3,
-                Estado: 'Retrasado',
+                id: 4,
+                fecha: new Date(),
+                idCliente: 4,
+                estado: 'Retrasado',
+                createdAt: new Date(),
+                updatedAt: new Date(),
             },
         ], {});
     },

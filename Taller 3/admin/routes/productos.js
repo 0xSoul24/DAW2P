@@ -7,12 +7,9 @@ router.get('/', async (req, res) => {
     res.render('productos', { productos });
 });
 
-router.post('/', async (req, res) => {
-    await Producto.create({
-        descrip: req.body.descrip,
-        stock: req.body.stock,
-        precio: req.body.precio
-    });
+router.post('/create', async (req, res) => {
+    const { descrip, stock, precio } = req.body;
+    await Producto.create({ descrip, stock, precio });
     res.redirect('/productos');
 });
 

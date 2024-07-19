@@ -3,18 +3,38 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async up(queryInterface, Sequelize) {
-        await queryInterface.bulkInsert('Producto', [
+        await queryInterface.bulkInsert('Productos', [
             {
-                Id: 1,
-                Descripción: 'Camisa azul',
-                Stock: true,
-                Precio: 25.00,
+                id: 1,
+                descripción: 'Camisa azul',
+                stock: true,
+                precio: 25.00,
+                createdAt: new Date(),
+                updatedAt: new Date(),
             },
             {
-                Id: 2,
-                Descripción: 'Pantalón negro',
-                Stock: false,
-                Precio: 30.00,
+                id: 2,
+                descripción: 'Pantalón negro',
+                stock: false,
+                precio: 30.00,
+                createdAt: new Date(),
+                updatedAt: new Date(),
+            },
+            {
+                id: 3,
+                descripción: 'Bufanda Amarilla',
+                stock: false,
+                precio: 30.00,
+                createdAt: new Date(),
+                updatedAt: new Date(),
+            },
+            {
+                id: 4,
+                descripción: 'Medias Negras',
+                stock: false,
+                precio: 30.00,
+                createdAt: new Date(),
+                updatedAt: new Date(),
             },
         ], {});
     },

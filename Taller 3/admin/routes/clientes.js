@@ -1,29 +1,16 @@
 const express = require('express');
+const router = express.Router();
+const { Cliente } = require('../models');
 
-module.exports = (Cliente) => {
-    const router = express.Router();
+router.get('/', async (req, res) => {
+    const clientes = await Cliente.findAll();
+    res.render('clientes', { clientes });
+});
 
-    router.get('/', async (req, res) => {
-        try {
-            const clientes = await Cliente.find({});
-            res.render('clientes', { clientes });
-        } catch (err) {
-            res.status(500).send(err);
-        }
-    });
+router.post('/create', async (req, res) => {
+    const { nombre, apellido } = req.body;
+    await Cliente.create({ nombre, apellido });
+    res.redirect('/clientes');
+});
 
-    router.post('/', async (req, res) => {
-        try {
-            const nuevoCliente = new Cliente({
-                nombre: req.body.nombre,
-                apellido: req.body.apellido
-            });
-            await nuevoCliente.save();
-            res.redirect('/clientes');
-        } catch (err) {
-            res.status(500).send(err);
-        }
-    });
-
-    return router;
-};
+module.exports = router;

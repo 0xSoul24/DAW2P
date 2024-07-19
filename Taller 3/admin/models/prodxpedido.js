@@ -8,9 +8,9 @@ module.exports = (sequelize, DataTypes) => {
         }
     }
     ProdxPedido.init({
-        Id: DataTypes.INTEGER,
-        IdProducto: DataTypes.INTEGER,
-        IdPedido: DataTypes.INTEGER
+        id: DataTypes.INTEGER,
+        idProducto: DataTypes.INTEGER,
+        idPedido: DataTypes.INTEGER
     }, {
         sequelize,
         modelName: 'ProdxPedido',

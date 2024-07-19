@@ -8,10 +8,10 @@ module.exports = (sequelize, DataTypes) => {
         }
     }
     Pedido.init({
-        Id: DataTypes.INTEGER,
-        Fecha: DataTypes.DATE,
-        IdCliente: DataTypes.INTEGER,
-        Estado: DataTypes.ENUM('En Espera','Transportando','Entregado','Retrasado'),
+        id: DataTypes.INTEGER,
+        fecha: DataTypes.DATE,
+        idCliente: DataTypes.INTEGER,
+        estado: DataTypes.ENUM('En Espera','Transportando','Entregado','Retrasado'),
     }, {
         sequelize,
         modelName: 'Pedido',

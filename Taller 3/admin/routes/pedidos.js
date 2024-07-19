@@ -1,21 +1,24 @@
 const express = require('express');
 const router = express.Router();
-const { Pedido, Cliente } = require('../models');
+const { Pedido, Cliente, Producto, ProdxPedido } = require('../models');
 
 router.get('/', async (req, res) => {
-    const pedidos = await Pedido.findAll({
-        include: [{ model: Cliente, as: 'cliente' }]
-    });
-    res.render('pedidos', { pedidos });
+  const pedidos = await Pedido.findAll({ include: [Cliente, Producto] });
+  res.render('pedidos', { pedidos });
 });
 
-router.post('/', async (req, res) => {
-    await Pedido.create({
-        fecha: req.body.fecha,
-        clienteId: req.body.clienteId,
-        estado: req.body.estado
+router.post('/create', async (req, res) => {
+  const { fecha, idcliente, estado, productos } = req.body;
+  const pedido = await Pedido.create({ fecha, idcliente, estado });
+  productos.forEach(async prod => {
+    await ProdxPedido.create({
+      idProducto: prod.idprod,
+      idPedido: pedido.id,
+      cantidad: prod.cantidad,
+      precio: prod.precio
     });
-    res.redirect('/pedidos');
+  });
+  res.redirect('/pedidos');
 });
 
 module.exports = router;

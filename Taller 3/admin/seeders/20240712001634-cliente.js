@@ -3,16 +3,34 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async up(queryInterface, Sequelize) {
-        await queryInterface.bulkInsert('Cliente', [
+        await queryInterface.bulkInsert('Clientes', [
             {
-                Id: 1,
-                Nombre: 'Juan Pérez',
-                Apellido: 'Gómez',
+                id: 1,
+                nombre: 'Juan',
+                apellido: 'Gómez',
+                createdAt: new Date(),
+                updatedAt: new Date(),
             },
             {
-                Id: 2,
-                Nombre: 'María González',
-                Apellido: 'López',
+                id: 2,
+                nombre: 'María',
+                apellido: 'López',
+                createdAt: new Date(),
+                updatedAt: new Date(),
+            },
+            {
+                id: 3,
+                nombre: 'Pepito',
+                apellido: 'Pacheco',
+                createdAt: new Date(),
+                updatedAt: new Date(),
+            },
+            {
+                id: 4,
+                nombre: 'José',
+                apellido: 'Pacheco',
+                createdAt: new Date(),
+                updatedAt: new Date(),
             },
         ], {});
     },

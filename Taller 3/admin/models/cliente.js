@@ -8,9 +8,11 @@ module.exports = (sequelize, DataTypes) => {
         }
     }
     Cliente.init({
-        Id: DataTypes.INTEGER,
-        Nombre: DataTypes.TEXT,
-        Apellido: DataTypes.TEXT
+        id: DataTypes.INTEGER,
+        nombre: DataTypes.TEXT,
+        apellido: DataTypes.TEXT,
+        createdAt: DataTypes.DATE,
+        updatedAt: DataTypes.DATE
     }, {
         sequelize,
         modelName: 'Cliente',

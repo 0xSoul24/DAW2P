@@ -8,10 +8,10 @@ module.exports = (sequelize, DataTypes) => {
         }
     }
     Producto.init({
-        Id: DataTypes.INTEGER,
-        Descripción: DataTypes.TEXT,
-        Stock: DataTypes.BOOLEAN,
-        Precio: DataTypes.DECIMAL
+        id: DataTypes.INTEGER,
+        descripción: DataTypes.TEXT,
+        stock: DataTypes.BOOLEAN,
+        precio: DataTypes.DECIMAL
     }, {
         sequelize,
         modelName: 'Producto',
