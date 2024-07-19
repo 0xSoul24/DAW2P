@@ -8,7 +8,12 @@ module.exports = (sequelize, DataTypes) => {
         }
     }
     Cliente.init({
-        id: DataTypes.INTEGER,
+        id: {
+            allowNull: false,
+            autoIncrement: true,
+            primaryKey: true,
+            type: DataTypes.INTEGER
+          },
         nombre: DataTypes.TEXT,
         apellido: DataTypes.TEXT,
         createdAt: DataTypes.DATE,

@@ -8,7 +8,12 @@ module.exports = (sequelize, DataTypes) => {
         }
     }
     Pedido.init({
-        id: DataTypes.INTEGER,
+        id: {
+            allowNull: false,
+            autoIncrement: true,
+            primaryKey: true,
+            type: DataTypes.INTEGER
+          },
         fecha: DataTypes.DATE,
         idCliente: DataTypes.INTEGER,
         estado: DataTypes.ENUM('En Espera','Transportando','Entregado','Retrasado'),

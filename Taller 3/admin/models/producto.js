@@ -8,7 +8,12 @@ module.exports = (sequelize, DataTypes) => {
         }
     }
     Producto.init({
-        id: DataTypes.INTEGER,
+        id: {
+            allowNull: false,
+            autoIncrement: true,
+            primaryKey: true,
+            type: DataTypes.INTEGER
+          },
         descripción: DataTypes.TEXT,
         stock: DataTypes.BOOLEAN,
         precio: DataTypes.DECIMAL

@@ -8,7 +8,12 @@ module.exports = (sequelize, DataTypes) => {
         }
     }
     ProdxPedido.init({
-        id: DataTypes.INTEGER,
+        id: {
+            allowNull: false,
+            autoIncrement: true,
+            primaryKey: true,
+            type: DataTypes.INTEGER
+          },
         idProducto: DataTypes.INTEGER,
         idPedido: DataTypes.INTEGER
     }, {
