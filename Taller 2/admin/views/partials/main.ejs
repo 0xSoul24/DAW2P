@@ -1,4 +1,64 @@
-<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-    <h1 class="text-center">Express / MySQL</h1>
-  </main>
-  
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1>Registro</h1>
+        <form id="registrationForm" class="mb-4">
+            <div class="form-group">
+                <label for="name">Nombre:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label>Sexo:</label><br>
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" id="male" name="sex" value="Masculino" required>
+                    <label class="form-check-label" for="male">Masculino</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" id="female" name="sex" value="Femenino">
+                    <label class="form-check-label" for="female">Femenino</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="maritalStatus">Estado Civil:</label>
+                <select class="form-control" id="maritalStatus" name="maritalStatus" required>
+                    <option value="soltero">Soltero</option>
+                    <option value="casado">Casado</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="age">Edad:</label>
+                <input type="number" class="form-control" id="age" name="age" required>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="addPerson()">Agregar</button>
+        </form>
+
+        <h2>Lista de Personas</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Sexo</th>
+                    <th>Estado Civil</th>
+                    <th>Edad</th>
+                </tr>
+            </thead>
+            <tbody id="peopleTableBody">
+            </tbody>
+        </table>
+    </div>
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
